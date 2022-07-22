@@ -24,7 +24,10 @@ function CustomDrawerContent(props) {
           <DrawerItemList {...props} />
         </View>
         <Pressable style={styles.logOutContainer}>
-          <AntDesign name="logout" size={24} color="black" style={styles.logOutIcon} />
+          <AntDesign name="logout" size={24} color="black" style={styles.logOutIcon} onPress={() => {
+            localStorage.removeItem('authToken');
+            props.navigation.navigate('SignIn');
+          }} />
           <Text>Log out</Text>
         </Pressable>
       </View>

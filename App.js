@@ -12,6 +12,8 @@ import TripDescriptionScreen from './screens/TripDescription';
 import AddressScreen from './screens/Address';
 import SettingsScreen from './screens/Settings';
 import SupportScreen from './screens/Support';
+import SignInScreen from './screens/SignIn';
+import SignUpScreen from './screens/SignUp';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Drawer = createDrawerNavigator();
@@ -21,7 +23,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator
         drawerType="front"
-        initialRouteName="Home"
+        initialRouteName={localStorage.getItem('authToken') ? "Home" : "SignIn"}
         screenOptions={{
           activeTintColor: '#e91e63',
           itemStyle: { marginVertical: 10 },
@@ -146,6 +148,44 @@ export default function App() {
             headerShown: true,
           }}
           component={SupportScreen}
+        />
+        <Drawer.Screen
+          key="SignIn"
+          name="SignIn"
+          options={({ navigation }) => ({
+            drawerItemStyle: {
+              display: 'none',
+            },
+            headerShown: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                <AntDesign name="back" size={30} color="black" style={styles.menuIcon} />
+              </TouchableOpacity>
+            ),
+            headerTitle: 'Sign In',
+            headerTitleAlign: 'center',
+            headerRight: false,
+          })}
+          component={SignInScreen}
+        />
+        <Drawer.Screen
+          key="SignUp"
+          name="SignUp"
+          options={({ navigation }) => ({
+            drawerItemStyle: {
+              display: 'none',
+            },
+            headerShown: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+                <AntDesign name="back" size={30} color="black" style={styles.menuIcon} />
+              </TouchableOpacity>
+            ),
+            headerTitle: 'Sign Up',
+            headerTitleAlign: 'center',
+            headerRight: false,
+          })}
+          component={SignUpScreen}
         />
       </Drawer.Navigator>
     </NavigationContainer>
