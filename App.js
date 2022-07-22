@@ -23,7 +23,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator
         drawerType="front"
-        initialRouteName={localStorage.getItem('authToken') ? "Home" : "SignIn"}
+        initialRouteName={localStorage.getItem('access_token') ? "Home" : "SignIn"}
         screenOptions={{
           activeTintColor: '#e91e63',
           itemStyle: { marginVertical: 10 },

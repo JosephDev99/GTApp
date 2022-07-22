@@ -25,11 +25,11 @@ export default function SignInScreen({ navigation }) {
   const handleSubmit = (data) => {
     console.log(data);
     // axios.post('http://localhost:3000/auth/signin', data)
-    //   .then(res => localStorage.setItem("authToken", res.data.accessToken))
+    //   .then(res => localStorage.setItem("access_token", res.data.accessToken))
     //   .catch((err) => {
     //     throw new Error(err.response.body.message);
     //   });
-    localStorage.setItem("authToken", 'yellow_splash');
+    localStorage.setItem("access_token", 'yellow_splash');
     navigation.navigate('Home');
   };
 
