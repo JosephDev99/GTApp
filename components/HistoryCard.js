@@ -44,7 +44,7 @@ export default function HistoryCardComponent(props) {
           <Text style={styles.destAdress}>{props.dest}</Text>
         </View>
       </View>
-      <Pressable style={styles.requestButton} onPress={() => props.navigation.navigate('TripDescription')}>
+      <Pressable style={styles.requestButton} onPress={() => props.navigation.navigate('TripDescription', {price: props.price, start: props.start, dest: props.dest})}>
         <Text style={styles.requestText}>More details</Text>
       </Pressable>
     </View>

@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { StyleSheet, View } from "react-native";
+import axios from 'axios';
 
 import HistoryCard from '../components/HistoryCard';
 
 export default function HistoryScreen({ navigation }) {
+  const [histories, setHistories] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get('http://localhost:3000/history')
+      .then(res => {
+        console.log(res.data)
+        setHistories(res.data)
+      })
+      .catch((err) => {
+        throw new Error(err.response.body.message);
+      });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <HistoryCard navigation={navigation} source='HILmr' dateTime='29 April, 16:12' price={-1} start='157 Highland Street' dest='919 Main Street' />
-      <HistoryCard navigation={navigation} source='GoogleMapTA' dateTime='26 May, 19:11' price={7} start='315 Avenue C' dest='Old Tbilisi' />
+      {histories.map((history, index) => (
+        <HistoryCard key={index} navigation={navigation} source='HILmr' dateTime={history.DateTime} price={history.price} start={history.start} dest={history.dest} />
+      ))}
     </View>
   );
 }

@@ -3,7 +3,8 @@ import { Animated, Image, Pressable, StyleSheet, Text, View } from "react-native
 import { Asset } from 'expo-asset';
 import { AntDesign, Entypo, Feather, FontAwesome5 } from '@expo/vector-icons';
 
-export default function TripDescriptionScreen() {
+export default function TripDescriptionScreen({ route }) {
+  const { price, start, dest } = route.params;
   const logoStyles = [styles.logoStyle];
   const animation = new Animated.Value(1);
 
@@ -48,24 +49,24 @@ export default function TripDescriptionScreen() {
             <View style={styles.yellowCircle} />
           </View>
           <View style={styles.getStartedContainer}>
-            <Text>555 Middlefield Rd</Text>
+            <Text>{start}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <Text>Palo Alto</Text>
+            <Text>{dest}</Text>
           </View>
         </View>
         <Text style={styles.fontBold}>TRIP FARE</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <View style={styles.rowBetween}>
           <Text>Credit Card</Text>
-          <Text style={styles.textBlue}>$12.30</Text>
+          <Text style={styles.textBlue}>${price.toFixed(2)}</Text>
         </View>
         <View style={styles.rowBetween}>
           <Text>Tip</Text>
-          <Text style={styles.textBlue}>$2.00</Text>
+          <Text style={styles.textBlue}>$0.00</Text>
         </View>
         <View style={styles.rowBetween}>
           <Text>Total Paid Amount</Text>
-          <Text style={styles.textBlue}>$14.30</Text>
+          <Text style={styles.textBlue}>${price.toFixed(2)}</Text>
         </View>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <View style={styles.rowBetween}>

@@ -23,13 +23,11 @@ export default function SignInScreen({ navigation }) {
   });
 
   const handleSubmit = (data) => {
-    console.log(data);
-    // axios.post('http://localhost:3000/auth/signin', data)
-    //   .then(res => localStorage.setItem("access_token", res.data.accessToken))
-    //   .catch((err) => {
-    //     throw new Error(err.response.body.message);
-    //   });
-    localStorage.setItem("access_token", 'yellow_splash');
+    axios.post('http://localhost:3000/auth/signin', data)
+      .then(res => localStorage.setItem("access_token", res.data.accessToken))
+      .catch((err) => {
+        throw new Error(err.response.body.message);
+      });
     navigation.navigate('Home');
   };
 
